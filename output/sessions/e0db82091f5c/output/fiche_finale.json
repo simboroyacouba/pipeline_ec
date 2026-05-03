@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-05-03T20:01:46.274723",
+  "batiment": {
+    "type_couverture": "Tôle bac",
+    "materiaux_construction": "Définitifs",
+    "amenagement_facade": "Enduit",
+    "menuiserie_facade": "Métallique",
+    "superficie_m2": 188.88,
+    "categorie": {
+      "id": 6,
+      "type_batiment": "Villa ou construction à niveau",
+      "confiance": 0.875,
+      "valeur_m2_fcfa": 100000
+    },
+    "valeur_totale_fcfa": 18888000
+  },
+  "amenagement": {
+    "panneau_solaire": {
+      "nombre": 0,
+      "confidence_moyenne": 0.0,
+      "prix_unitaire_fcfa": 75000,
+      "valeur_totale_fcfa": 0
+    }
+  },
+  "estimation_totale_fcfa": 18888000
+}

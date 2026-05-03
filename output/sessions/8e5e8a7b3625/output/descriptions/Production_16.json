@@ -1,0 +1,48 @@
+{
+  "image": "Production_16.jpg",
+  "mode": "production",
+  "timestamp": "2026-05-03T20:25:51.175809",
+  "text_description": "Analyse Production (YOLO + Ensemble Soft+WA-NMS). YOLO n'a détecté aucun objet. L'ensemble (YOLO-seg + Mask R-CNN + DeepLabV3+) a identifié : 1 zone(s) de toiture tole ondulee, 1 zone(s) de toiture tole bac.",
+  "yolo": {
+    "model": "YOLODetector (class/yolo_classification)",
+    "total": 0,
+    "classes_found": [],
+    "detections": []
+  },
+  "ensemble": {
+    "model": "SoftWANMSEnsemble (YOLO-seg + Mask R-CNN + DeepLabV3+)",
+    "total": 2,
+    "classes_found": [
+      "toiture_tole_bac",
+      "toiture_tole_ondulee"
+    ],
+    "detections": [
+      {
+        "id": 1,
+        "class": "toiture_tole_ondulee",
+        "confidence": 0.2773,
+        "bbox": [
+          966.0,
+          482.0,
+          1029.0,
+          572.0
+        ],
+        "area_px": 5670,
+        "mask_area_px": 3951
+      },
+      {
+        "id": 2,
+        "class": "toiture_tole_bac",
+        "confidence": 0.3525,
+        "bbox": [
+          723.2,
+          262.2,
+          1283.6,
+          838.1
+        ],
+        "area_px": 322759,
+        "mask_area_px": 269643
+      }
+    ]
+  }
+}

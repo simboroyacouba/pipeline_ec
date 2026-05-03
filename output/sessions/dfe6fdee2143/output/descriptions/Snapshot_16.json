@@ -1,0 +1,76 @@
+{
+  "image": "Snapshot_16.jpg",
+  "mode": "snapshot",
+  "timestamp": "2026-05-03T20:37:25.698246",
+  "text_description": "Analyse Snapshot (YOLO uniquement). YOLO a détecté : 4 menuiserie metallique, 1 batiment peint.",
+  "yolo": {
+    "model": "YOLODetector (class/yolo_classification)",
+    "total": 5,
+    "classes_found": [
+      "menuiserie_metallique",
+      "batiment_peint"
+    ],
+    "detections": [
+      {
+        "id": 1,
+        "class": "menuiserie_metallique",
+        "confidence": 0.7802,
+        "bbox": [
+          468.7,
+          196.6,
+          494.9,
+          222.9
+        ],
+        "area_px": 689
+      },
+      {
+        "id": 2,
+        "class": "menuiserie_metallique",
+        "confidence": 0.7721,
+        "bbox": [
+          640.5,
+          190.5,
+          699.9,
+          237.8
+        ],
+        "area_px": 2814
+      },
+      {
+        "id": 3,
+        "class": "menuiserie_metallique",
+        "confidence": 0.6999,
+        "bbox": [
+          374.0,
+          199.1,
+          436.3,
+          245.7
+        ],
+        "area_px": 2905
+      },
+      {
+        "id": 4,
+        "class": "batiment_peint",
+        "confidence": 0.5513,
+        "bbox": [
+          246.3,
+          152.0,
+          807.3,
+          292.5
+        ],
+        "area_px": 78841
+      },
+      {
+        "id": 5,
+        "class": "menuiserie_metallique",
+        "confidence": 0.5347,
+        "bbox": [
+          666.8,
+          560.0,
+          711.2,
+          611.3
+        ],
+        "area_px": 2274
+      }
+    ]
+  }
+}

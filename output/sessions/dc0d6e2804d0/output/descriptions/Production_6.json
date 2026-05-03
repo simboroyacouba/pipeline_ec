@@ -1,0 +1,75 @@
+{
+  "image": "Production_6.jpg",
+  "mode": "production",
+  "timestamp": "2026-05-03T20:03:24.411529",
+  "text_description": "Analyse Production (YOLO + Ensemble Soft+WA-NMS). YOLO a détecté : 2 panneau solaire. L'ensemble (YOLO-seg + Mask R-CNN + DeepLabV3+) a identifié : 1 zone(s) de toiture tole bac, 1 zone(s) de toiture dalle.",
+  "yolo": {
+    "model": "YOLODetector (class/yolo_classification)",
+    "total": 2,
+    "classes_found": [
+      "panneau_solaire"
+    ],
+    "detections": [
+      {
+        "id": 1,
+        "class": "panneau_solaire",
+        "confidence": 0.7221,
+        "bbox": [
+          387.0,
+          507.8,
+          430.1,
+          570.8
+        ],
+        "area_px": 2712
+      },
+      {
+        "id": 2,
+        "class": "panneau_solaire",
+        "confidence": 0.5287,
+        "bbox": [
+          424.2,
+          510.2,
+          467.9,
+          573.9
+        ],
+        "area_px": 2784
+      }
+    ]
+  },
+  "ensemble": {
+    "model": "SoftWANMSEnsemble (YOLO-seg + Mask R-CNN + DeepLabV3+)",
+    "total": 2,
+    "classes_found": [
+      "toiture_tole_bac",
+      "toiture_dalle"
+    ],
+    "detections": [
+      {
+        "id": 1,
+        "class": "toiture_tole_bac",
+        "confidence": 0.3411,
+        "bbox": [
+          224.5,
+          147.2,
+          526.0,
+          717.2
+        ],
+        "area_px": 171854,
+        "mask_area_px": 121774
+      },
+      {
+        "id": 2,
+        "class": "toiture_dalle",
+        "confidence": 0.2815,
+        "bbox": [
+          188.0,
+          195.0,
+          235.0,
+          418.0
+        ],
+        "area_px": 10481,
+        "mask_area_px": 7891
+      }
+    ]
+  }
+}

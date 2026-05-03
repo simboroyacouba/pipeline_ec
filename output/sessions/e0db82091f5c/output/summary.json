@@ -1,0 +1,149 @@
+{
+  "timestamp": "2026-05-03T20:01:46.179821",
+  "output_dir": "C:\\Users\\NEBRATA\\Downloads\\final\\pipeline\\output\\sessions\\e0db82091f5c\\output",
+  "total_input": 2,
+  "stats": {
+    "snapshot": 1,
+    "production": 1,
+    "skip": 0,
+    "error": 0
+  },
+  "results": [
+    {
+      "image": "Production_5.jpg",
+      "mode": "production",
+      "timestamp": "2026-05-03T20:01:43.871599",
+      "text_description": "Analyse Production (YOLO + Ensemble Soft+WA-NMS). YOLO n'a détecté aucun objet. L'ensemble (YOLO-seg + Mask R-CNN + DeepLabV3+) a identifié : 2 zone(s) de toiture tole bac.",
+      "yolo": {
+        "model": "YOLODetector (class/yolo_classification)",
+        "total": 0,
+        "classes_found": [],
+        "detections": []
+      },
+      "ensemble": {
+        "model": "SoftWANMSEnsemble (YOLO-seg + Mask R-CNN + DeepLabV3+)",
+        "total": 2,
+        "classes_found": [
+          "toiture_tole_bac"
+        ],
+        "detections": [
+          {
+            "id": 1,
+            "class": "toiture_tole_bac",
+            "confidence": 0.3443,
+            "bbox": [
+              105.6,
+              45.2,
+              476.3,
+              548.3
+            ],
+            "area_px": 186455,
+            "mask_area_px": 184024
+          },
+          {
+            "id": 2,
+            "class": "toiture_tole_bac",
+            "confidence": 0.3398,
+            "bbox": [
+              332.6,
+              45.8,
+              529.8,
+              468.4
+            ],
+            "area_px": 83316,
+            "mask_area_px": 75067
+          }
+        ]
+      }
+    },
+    {
+      "image": "Snapshot_5.jpg",
+      "mode": "snapshot",
+      "timestamp": "2026-05-03T20:01:46.177817",
+      "text_description": "Analyse Snapshot (YOLO uniquement). YOLO a détecté : 2 batiment enduit, 3 menuiserie metallique, 1 batiment non enduit.",
+      "yolo": {
+        "model": "YOLODetector (class/yolo_classification)",
+        "total": 6,
+        "classes_found": [
+          "batiment_enduit",
+          "menuiserie_metallique",
+          "batiment_non_enduit"
+        ],
+        "detections": [
+          {
+            "id": 1,
+            "class": "batiment_enduit",
+            "confidence": 0.8109,
+            "bbox": [
+              261.8,
+              300.5,
+              1100.8,
+              576.3
+            ],
+            "area_px": 231385
+          },
+          {
+            "id": 2,
+            "class": "menuiserie_metallique",
+            "confidence": 0.7594,
+            "bbox": [
+              479.6,
+              70.5,
+              567.6,
+              132.8
+            ],
+            "area_px": 5475
+          },
+          {
+            "id": 3,
+            "class": "batiment_non_enduit",
+            "confidence": 0.6246,
+            "bbox": [
+              1144.3,
+              132.4,
+              1772.8,
+              577.8
+            ],
+            "area_px": 279960
+          },
+          {
+            "id": 4,
+            "class": "menuiserie_metallique",
+            "confidence": 0.4954,
+            "bbox": [
+              666.9,
+              67.4,
+              752.1,
+              134.1
+            ],
+            "area_px": 5678
+          },
+          {
+            "id": 5,
+            "class": "batiment_enduit",
+            "confidence": 0.4135,
+            "bbox": [
+              0.0,
+              288.3,
+              156.9,
+              480.8
+            ],
+            "area_px": 30203
+          },
+          {
+            "id": 6,
+            "class": "menuiserie_metallique",
+            "confidence": 0.3869,
+            "bbox": [
+              0.9,
+              336.3,
+              25.0,
+              393.1
+            ],
+            "area_px": 1364
+          }
+        ]
+      }
+    }
+  ]
+}

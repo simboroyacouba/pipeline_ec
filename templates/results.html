@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% block title %}Résultats — Evaluation cadastrale{% endblock %}
+
+{% block content %}
+
+{% set bat = fiche.batiment %}
+{% set cat = bat.get('categorie', {}) %}
+{% set pan = fiche.amenagement.panneau_solaire %}
+
+<!-- En-tête -->
+<div class="d-flex align-items-center justify-content-between mb-4">
+  <div>
+    <h2 class="fw-bold mb-0">Résultats d'analyse</h2>
+    <small class="text-muted">Généré le {{ fiche.generated_at[:19].replace('T', ' à ') }}</small>
+  </div>
+  <a href="/" class="btn btn-outline-secondary">
+    <i class="bi bi-arrow-left me-1"></i>Nouvelle analyse
+  </a>
+</div>
+
+<!-- Bannière estimation totale -->
+{% if fiche.estimation_totale_fcfa is defined %}
+<div class="total-banner mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3">
+  <div>
+    <div class="label"><i class="bi bi-calculator me-1"></i>Estimation totale</div>
+    <div class="amount">{{ fiche.estimation_totale_fcfa | fcfa }}</div>
+  </div>
+  <div class="text-end">
+    <div class="label">Bâtiment</div>
+    <div class="fs-5 fw-bold">{{ bat.valeur_totale_fcfa | fcfa }}</div>
+    {% if pan.nombre > 0 %}
+    <div class="label mt-1">Panneaux solaires</div>
+    <div class="fs-5 fw-bold">{{ pan.valeur_totale_fcfa | fcfa }}</div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+<div class="row g-4">
+
+  <!-- ── Caractéristiques bâtiment ── -->
+  <div class="col-lg-6">
+    <div class="card h-100">
+      <div class="card-header bg-primary text-white">
+        <i class="bi bi-building me-2"></i>Bâtiment
+      </div>
+      <div class="card-body">
+
+        <table class="table table-borderless mb-0">
+          <tbody>
+            <tr>
+              <td class="text-muted fw-semibold" style="width:50%">Type de couverture</td>
+              <td><span class="badge-val">{{ bat.type_couverture or '—' }}</span></td>
+            </tr>
+            <tr>
+              <td class="text-muted fw-semibold">Matériaux</td>
+              <td><span class="badge-val">{{ bat.materiaux_construction or '—' }}</span></td>
+            </tr>
+            <tr>
+              <td class="text-muted fw-semibold">Aménagement façade</td>
+              <td><span class="badge-val">{{ bat.amenagement_facade or '—' }}</span></td>
+            </tr>
+            <tr>
+              <td class="text-muted fw-semibold">Menuiserie façade</td>
+              <td><span class="badge-val">{{ bat.menuiserie_facade or '—' }}</span></td>
+            </tr>
+            <tr>
+              <td class="text-muted fw-semibold">Superficie</td>
+              <td>
+                <span class="badge-val">
+                  {% if bat.superficie_m2 is defined %}
+                    {{ "%.1f"|format(bat.superficie_m2) }} m²
+                  {% else %}
+                    {{ bat.superficie_px }} px
+                  {% endif %}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        {% if cat %}
+        <hr>
+        <div class="d-flex align-items-start justify-content-between">
+          <div>
+            <div class="text-muted small fw-semibold mb-1">Catégorie</div>
+            <span class="fs-5 fw-bold text-primary">Cat. {{ cat.id }}</span>
+            <span class="text-muted ms-2">{{ cat.type_batiment }}</span>
+          </div>
+          <div class="text-end">
+            <div class="text-muted small fw-semibold mb-1">Confiance</div>
+            <div class="fw-bold">{{ "%.0f"|format(cat.confiance * 100) }}%</div>
+            <div class="progress mt-1" style="height:6px;width:80px">
+              <div class="progress-bar bg-success" style="width:{{ "%.0f"|format(cat.confiance * 100) }}%"></div>
+            </div>
+          </div>
+        </div>
+        {% if cat.valeur_m2_fcfa is defined %}
+        <div class="mt-3 p-3 rounded-3" style="background:#f0f7ff">
+          <div class="text-muted small fw-semibold">Valeur au m²</div>
+          <div class="fw-bold text-primary fs-5">{{ cat.valeur_m2_fcfa | fcfa }}</div>
+          {% if bat.valeur_totale_fcfa is defined %}
+          <div class="text-muted small mt-1">
+            Total bâtiment :
+            <strong class="text-dark">{{ bat.valeur_totale_fcfa | fcfa }}</strong>
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Panneaux solaires ── -->
+  <div class="col-lg-6">
+    <div class="card mb-4">
+      <div class="card-header bg-warning text-dark">
+        <i class="bi bi-sun me-2"></i>Panneaux solaires
+      </div>
+      <div class="card-body">
+        <div class="row g-3 text-center">
+          <div class="col-6">
+            <div class="stat-card" style="background: linear-gradient(135deg,#f6c23e,#f4a307)">
+              <div class="label">Nombre détecté</div>
+              <div class="value">{{ pan.nombre }}</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="stat-card" style="background: linear-gradient(135deg,#36b9cc,#258391)">
+              <div class="label">Prix unitaire</div>
+              <div class="value" style="font-size:1.2rem">{{ pan.prix_unitaire_fcfa | fcfa }}</div>
+            </div>
+          </div>
+        </div>
+        {% if pan.nombre > 0 %}
+        <div class="mt-3 p-3 rounded-3" style="background:#fffbf0">
+          <div class="text-muted small fw-semibold">Valeur totale panneaux</div>
+          <div class="fw-bold text-warning fs-5">{{ pan.valeur_totale_fcfa | fcfa }}</div>
+          {% if pan.confidence_moyenne %}
+          <div class="text-muted small mt-1">
+            Confiance moyenne : <strong>{{ "%.1f"|format(pan.confidence_moyenne * 100) }}%</strong>
+          </div>
+          {% endif %}
+        </div>
+        {% else %}
+        <p class="text-muted text-center mt-3 mb-0 small">Aucun panneau détecté</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Images annotées ── -->
+{% if images %}
+<div class="card mt-4">
+  <div class="card-header bg-secondary text-white">
+    <i class="bi bi-images me-2"></i>Images annotées ({{ images|length }})
+  </div>
+  <div class="card-body">
+    <div class="row g-3">
+      {% for img in images %}
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <img src="{{ url_for('serve_file', session_id=session_id, filename=img) }}"
+             class="img-thumb"
+             alt="{{ img }}"
+             title="{{ img }}">
+        <div class="text-muted small text-center mt-1 text-truncate" title="{{ img }}">{{ img }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

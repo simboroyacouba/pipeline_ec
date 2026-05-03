@@ -1,0 +1,208 @@
+{
+  "generated_at": "2026-05-03T19:45:08.159570",
+  "source": "C:\\Users\\NEBRATA\\Downloads\\final\\pipeline\\output\\sessions\\15ee637c59ab\\output\\descriptions",
+  "class_mapping_file": "C:/Users/NEBRATA/Downloads/final/pipeline/class_mapping.json",
+  "categories_file": "C:/Users/NEBRATA/Downloads/final/pipeline/categories_batiments.json",
+  "images_analysees": {
+    "total": 2,
+    "snapshot": 1,
+    "production": 1
+  },
+  "resume_textuel": "Toitures : 1 zone(s) Tôle bac (196.6 m2, cat.6), 1 zone(s) Tôle ondulée (2.9 m2, cat.6). Total : 199.4 m2 (GSD=0.027 m/px). Batiments (Snapshot) : 2 Peinture / Définitifs (cat.3), 4 Enduit / Définitifs (cat.7).",
+  "panneaux_solaires": {
+    "total": 0,
+    "confidence_moyenne": 0.0,
+    "par_image": []
+  },
+  "superficies_toiture": {
+    "totale_px": 273594,
+    "totale_m2": 199.45,
+    "resolution_m_px": 0.027,
+    "par_type": {
+      "toiture_tole_bac": {
+        "classe_modele": "toiture_tole_bac",
+        "type_couverture": "Tôle bac",
+        "nombre_zones": 1,
+        "superficie_px": 269643,
+        "categorie_resolue": {
+          "id": 6,
+          "type_batiment": "Villa ou construction à niveau",
+          "type_couverture_ref": [
+            "Tôle",
+            "Tuile"
+          ],
+          "materiaux_construction_ref": "Définitifs",
+          "amenagement_facade_ref": "Enduit",
+          "menuiserie_facade_ref": "Aluminium",
+          "score": 7,
+          "score_max": 8,
+          "confiance": 0.875
+        },
+        "instances": [
+          {
+            "image": "Production_16.jpg",
+            "confidence": 0.3525,
+            "bbox": [
+              723.2,
+              262.2,
+              1283.6,
+              838.1
+            ],
+            "mask_area_px": 269643
+          }
+        ],
+        "superficie_m2": 196.57
+      },
+      "toiture_tole_ondulee": {
+        "classe_modele": "toiture_tole_ondulee",
+        "type_couverture": "Tôle ondulée",
+        "nombre_zones": 1,
+        "superficie_px": 3951,
+        "categorie_resolue": {
+          "id": 6,
+          "type_batiment": "Villa ou construction à niveau",
+          "type_couverture_ref": [
+            "Tôle",
+            "Tuile"
+          ],
+          "materiaux_construction_ref": "Définitifs",
+          "amenagement_facade_ref": "Enduit",
+          "menuiserie_facade_ref": "Aluminium",
+          "score": 7,
+          "score_max": 8,
+          "confiance": 0.875
+        },
+        "instances": [
+          {
+            "image": "Production_16.jpg",
+            "confidence": 0.2773,
+            "bbox": [
+              966.0,
+              482.0,
+              1029.0,
+              572.0
+            ],
+            "mask_area_px": 3951
+          }
+        ],
+        "superficie_m2": 2.88
+      }
+    }
+  },
+  "caracteristiques_snapshot": {
+    "batiment_peint": {
+      "classe_modele": "batiment_peint",
+      "materiaux_construction": "Définitifs",
+      "amenagement_facade": "Peinture",
+      "menuiserie_facade": "Aluminium",
+      "total": 2,
+      "confidence_moyenne": 0.4061,
+      "categorie_resolue": {
+        "id": 3,
+        "type_batiment": "Villa ou construction à niveau",
+        "type_couverture_ref": "Dalle de béton",
+        "materiaux_construction_ref": "Définitifs",
+        "amenagement_facade_ref": "Peinture",
+        "menuiserie_facade_ref": "Aluminium",
+        "score": 4,
+        "score_max": 8,
+        "confiance": 0.5
+      },
+      "instances": [
+        {
+          "image": "Snapshot_16.jpg",
+          "confidence": 0.5513,
+          "bbox": [
+            246.3,
+            152.0,
+            807.3,
+            292.5
+          ],
+          "area_px": 78841
+        },
+        {
+          "image": "Snapshot_16.jpg",
+          "confidence": 0.2609,
+          "bbox": [
+            240.9,
+            151.7,
+            787.1,
+            293.0
+          ],
+          "area_px": 77190
+        }
+      ]
+    },
+    "menuiserie_metallique": {
+      "classe_modele": "menuiserie_metallique",
+      "materiaux_construction": "Définitifs",
+      "amenagement_facade": "Enduit",
+      "menuiserie_facade": "Métallique",
+      "total": 4,
+      "confidence_moyenne": 0.6967,
+      "categorie_resolue": {
+        "id": 7,
+        "type_batiment": "Villa ou construction à niveau",
+        "type_couverture_ref": [
+          "Tôle",
+          "Tuile"
+        ],
+        "materiaux_construction_ref": "Définitifs",
+        "amenagement_facade_ref": "Enduit",
+        "menuiserie_facade_ref": [
+          "Bois",
+          "Métallique"
+        ],
+        "score": 7,
+        "score_max": 8,
+        "confiance": 0.875
+      },
+      "instances": [
+        {
+          "image": "Snapshot_16.jpg",
+          "confidence": 0.7802,
+          "bbox": [
+            468.7,
+            196.6,
+            494.9,
+            222.9
+          ],
+          "area_px": 689
+        },
+        {
+          "image": "Snapshot_16.jpg",
+          "confidence": 0.7721,
+          "bbox": [
+            640.5,
+            190.5,
+            699.9,
+            237.8
+          ],
+          "area_px": 2814
+        },
+        {
+          "image": "Snapshot_16.jpg",
+          "confidence": 0.6999,
+          "bbox": [
+            374.0,
+            199.1,
+            436.3,
+            245.7
+          ],
+          "area_px": 2905
+        },
+        {
+          "image": "Snapshot_16.jpg",
+          "confidence": 0.5347,
+          "bbox": [
+            666.8,
+            560.0,
+            711.2,
+            611.3
+          ],
+          "area_px": 2274
+        }
+      ]
+    }
+  }
+}

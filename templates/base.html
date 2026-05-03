@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Evaluation cadasrale{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    body { background: #f0f2f5; font-family: 'Segoe UI', system-ui, sans-serif; }
+
+    .navbar-brand { font-weight: 700; font-size: 1.2rem; letter-spacing: .5px; }
+
+    .card { border: none; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+    .card-header { border-radius: 12px 12px 0 0 !important; font-weight: 600; }
+
+    .badge-val {
+      background: #e8f4fd; color: #1a6fb3;
+      border-radius: 8px; padding: 4px 10px;
+      font-size: .95rem; font-weight: 600;
+    }
+
+    .stat-card {
+      border-radius: 12px; padding: 1.4rem 1.6rem;
+      color: #fff; font-weight: 700;
+    }
+    .stat-card .label { font-size: .8rem; opacity: .85; text-transform: uppercase; letter-spacing: .5px; }
+    .stat-card .value { font-size: 1.7rem; line-height: 1.2; }
+
+    .img-thumb {
+      border-radius: 8px; object-fit: cover;
+      width: 100%; height: 200px;
+      border: 2px solid #dee2e6;
+      transition: transform .2s;
+      cursor: pointer;
+    }
+    .img-thumb:hover { transform: scale(1.03); border-color: #2c7be5; }
+
+    .total-banner {
+      background: linear-gradient(135deg, #1a6fb3, #2c7be5);
+      border-radius: 12px; color: #fff;
+      padding: 1.5rem 2rem;
+    }
+    .total-banner .label { font-size: .85rem; opacity: .8; }
+    .total-banner .amount { font-size: 2.2rem; font-weight: 800; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark py-2">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <i class="bi bi-house-check me-2"></i>Evaluation cadastrale
+    </a>
+  </div>
+</nav>
+
+<div class="container py-4">
+  {% block content %}{% endblock %}
+</div>
+
+<!-- Lightbox -->
+<div class="modal fade" id="imgModal" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content bg-dark">
+      <div class="modal-header border-0">
+        <span class="text-white" id="imgModalLabel"></span>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center p-2">
+        <img id="modalImg" src="" class="img-fluid rounded" style="max-height:80vh">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.querySelectorAll('.img-thumb').forEach(img => {
+    img.addEventListener('click', () => {
+      document.getElementById('modalImg').src = img.src;
+      document.getElementById('imgModalLabel').textContent = img.alt;
+      new bootstrap.Modal(document.getElementById('imgModal')).show();
+    });
+  });
+</script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

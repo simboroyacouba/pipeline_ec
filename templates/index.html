@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}Analyse Toitures{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+
+    <div class="text-center mb-4">
+      <h1 class="fw-bold">Evaluer une propriété</h1>
+      <p class="text-muted">
+        <!-- Déposez vos images (<code>Snapshot_*</code> ou <code>Production_*</code>) -->
+        Déposez vos images  pour obtenir la classification du bâtiment et son estimation financière.
+      </p>
+    </div>
+
+    {% if error %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ error }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endif %}
+
+    <div class="card">
+      <div class="card-body p-4">
+        <form method="post" action="/run" enctype="multipart/form-data" id="uploadForm">
+
+          <!-- Zone de dépôt -->
+          <div id="dropZone"
+               class="border border-2 border-dashed rounded-3 text-center py-5 px-3 mb-3"
+               style="border-color:#adb5bd !important; cursor:pointer; transition: background .2s;">
+            <i class="bi bi-cloud-arrow-up fs-1 text-muted"></i>
+            <p class="mt-2 mb-1 fw-semibold">Glissez-déposez vos images ici</p>
+            <p class="text-muted small mb-3">ou cliquez pour sélectionner</p>
+            <input type="file" name="images" id="fileInput"
+                   multiple accept=".jpg,.jpeg,.png,.tif,.tiff"
+                   class="d-none">
+            <button type="button" class="btn btn-outline-secondary btn-sm" id="browseBtn">
+              <i class="bi bi-folder2-open me-1"></i>Parcourir
+            </button>
+          </div>
+
+          <!-- Liste des fichiers -->
+          <ul id="fileList" class="list-group mb-3" style="display:none!important"></ul>
+
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg" id="submitBtn" disabled>
+              <i class="bi bi-play-circle me-2"></i>Lancer l'analyse
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- <div class="card mt-3">
+      <div class="card-body py-3 px-4">
+        <small class="text-muted">
+          <i class="bi bi-info-circle me-1"></i>
+          <strong>Snapshot_*</strong> → YOLO oblique &nbsp;|&nbsp;
+          <strong>Production_*</strong> → YOLO nadir + ensemble Soft+WA-NMS
+        </small>
+      </div>
+    </div> -->
+
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const dropZone  = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+const fileList  = document.getElementById('fileList');
+const submitBtn = document.getElementById('submitBtn');
+
+function updateList(files) {
+  fileList.innerHTML = '';
+  if (!files.length) { fileList.style.display = 'none'; submitBtn.disabled = true; return; }
+  fileList.style.removeProperty('display');
+  [...files].forEach(f => {
+    const li = document.createElement('li');
+    li.className = 'list-group-item list-group-item-action py-1 px-3 small d-flex align-items-center';
+    li.innerHTML = `<i class="bi bi-image me-2 text-primary"></i>${f.name}
+                    <span class="ms-auto text-muted">${(f.size/1024).toFixed(0)} KB</span>`;
+    fileList.appendChild(li);
+  });
+  submitBtn.disabled = false;
+}
+
+fileInput.addEventListener('change', () => updateList(fileInput.files));
+
+// Bouton Parcourir — stopPropagation pour ne pas déclencher le click du dropZone
+document.getElementById('browseBtn').addEventListener('click', e => {
+  e.stopPropagation();
+  fileInput.click();
+});
+
+// Clic sur le dropZone (hors bouton) → ouvre le sélecteur
+dropZone.addEventListener('click', () => fileInput.click());
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.background = '#e9f4ff'; });
+dropZone.addEventListener('dragleave', () => { dropZone.style.background = ''; });
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.style.background = '';
+  updateList(e.dataTransfer.files);
+});
+
+document.getElementById('uploadForm').addEventListener('submit', () => {
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Analyse en cours...';
+});
+</script>
+{% endblock %}

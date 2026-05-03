@@ -539,7 +539,8 @@ def generate_fiche(rapport: dict, mapping: dict = None) -> dict:
     estimation_totale_fcfa = None
 
     if valeur_m2_k is not None and superficie_unit == 'm2':
-        valeur_batiment_fcfa   = round(superficie_val * valeur_m2_k * 1000)
+        superficie_affichee    = round(superficie_val, 1)   # même arrondi que l'affichage
+        valeur_batiment_fcfa   = round(superficie_affichee * valeur_m2_k * 1000)
         estimation_totale_fcfa = valeur_batiment_fcfa + valeur_panneaux_fcfa
 
     # ── Construction de la fiche ──────────────────────────────────────────────
@@ -548,7 +549,7 @@ def generate_fiche(rapport: dict, mapping: dict = None) -> dict:
         'materiaux_construction': materiaux,
         'amenagement_facade':     amenagement,
         'menuiserie_facade':      menuiserie,
-        f'superficie_{superficie_unit}': superficie_val,
+        f'superficie_{superficie_unit}': round(superficie_val, 1) if superficie_unit == 'm2' else superficie_val,
     }
     if cat_info:
         batiment['categorie'] = cat_info

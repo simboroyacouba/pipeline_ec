@@ -1,0 +1,122 @@
+{
+  "generated_at": "2026-05-03T20:03:26.574193",
+  "source": "C:\\Users\\NEBRATA\\Downloads\\final\\pipeline\\output\\sessions\\dc0d6e2804d0\\output\\descriptions",
+  "class_mapping_file": "C:/Users/NEBRATA/Downloads/final/pipeline/class_mapping.json",
+  "categories_file": "C:/Users/NEBRATA/Downloads/final/pipeline/categories_batiments.json",
+  "images_analysees": {
+    "total": 2,
+    "snapshot": 1,
+    "production": 1
+  },
+  "resume_textuel": "2 panneau(x) solaire(s) detecte(s) (confiance moy. 63%). Toitures : 1 zone(s) Dalle de béton (5.8 m2, cat.1), 1 zone(s) Tôle bac (88.8 m2, cat.6). Total : 94.5 m2 (GSD=0.027 m/px).",
+  "panneaux_solaires": {
+    "total": 2,
+    "confidence_moyenne": 0.6254,
+    "par_image": [
+      {
+        "image": "Production_6.jpg",
+        "count": 2,
+        "confidence_moyenne": 0.6254,
+        "instances": [
+          {
+            "image": "Production_6.jpg",
+            "mode": "production",
+            "confidence": 0.7221,
+            "bbox": [
+              387.0,
+              507.8,
+              430.1,
+              570.8
+            ],
+            "area_px": 2712
+          },
+          {
+            "image": "Production_6.jpg",
+            "mode": "production",
+            "confidence": 0.5287,
+            "bbox": [
+              424.2,
+              510.2,
+              467.9,
+              573.9
+            ],
+            "area_px": 2784
+          }
+        ]
+      }
+    ]
+  },
+  "superficies_toiture": {
+    "totale_px": 129665,
+    "totale_m2": 94.53,
+    "resolution_m_px": 0.027,
+    "par_type": {
+      "toiture_dalle": {
+        "classe_modele": "toiture_dalle",
+        "type_couverture": "Dalle de béton",
+        "nombre_zones": 1,
+        "superficie_px": 7891,
+        "categorie_resolue": {
+          "id": 1,
+          "type_batiment": "Villa ou construction à niveau",
+          "type_couverture_ref": "Dalle de béton",
+          "materiaux_construction_ref": "Définitifs",
+          "amenagement_facade_ref": "Carrelage",
+          "menuiserie_facade_ref": "Aluminium",
+          "score": 4,
+          "score_max": 8,
+          "confiance": 0.5
+        },
+        "instances": [
+          {
+            "image": "Production_6.jpg",
+            "confidence": 0.2815,
+            "bbox": [
+              188.0,
+              195.0,
+              235.0,
+              418.0
+            ],
+            "mask_area_px": 7891
+          }
+        ],
+        "superficie_m2": 5.75
+      },
+      "toiture_tole_bac": {
+        "classe_modele": "toiture_tole_bac",
+        "type_couverture": "Tôle bac",
+        "nombre_zones": 1,
+        "superficie_px": 121774,
+        "categorie_resolue": {
+          "id": 6,
+          "type_batiment": "Villa ou construction à niveau",
+          "type_couverture_ref": [
+            "Tôle",
+            "Tuile"
+          ],
+          "materiaux_construction_ref": "Définitifs",
+          "amenagement_facade_ref": "Enduit",
+          "menuiserie_facade_ref": "Aluminium",
+          "score": 7,
+          "score_max": 8,
+          "confiance": 0.875
+        },
+        "instances": [
+          {
+            "image": "Production_6.jpg",
+            "confidence": 0.3411,
+            "bbox": [
+              224.5,
+              147.2,
+              526.0,
+              717.2
+            ],
+            "mask_area_px": 121774
+          }
+        ],
+        "superficie_m2": 88.77
+      }
+    }
+  },
+  "caracteristiques_snapshot": {}
+}

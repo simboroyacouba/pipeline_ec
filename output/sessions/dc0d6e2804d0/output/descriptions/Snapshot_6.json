@@ -1,0 +1,12 @@
+{
+  "image": "Snapshot_6.jpg",
+  "mode": "snapshot",
+  "timestamp": "2026-05-03T20:03:26.543330",
+  "text_description": "Analyse Snapshot (YOLO uniquement). YOLO n'a détecté aucun objet.",
+  "yolo": {
+    "model": "YOLODetector (class/yolo_classification)",
+    "total": 0,
+    "classes_found": [],
+    "detections": []
+  }
+}

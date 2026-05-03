@@ -1,0 +1,89 @@
+{
+  "image": "Snapshot_5.jpg",
+  "mode": "snapshot",
+  "timestamp": "2026-05-03T20:01:46.177817",
+  "text_description": "Analyse Snapshot (YOLO uniquement). YOLO a détecté : 2 batiment enduit, 3 menuiserie metallique, 1 batiment non enduit.",
+  "yolo": {
+    "model": "YOLODetector (class/yolo_classification)",
+    "total": 6,
+    "classes_found": [
+      "batiment_enduit",
+      "menuiserie_metallique",
+      "batiment_non_enduit"
+    ],
+    "detections": [
+      {
+        "id": 1,
+        "class": "batiment_enduit",
+        "confidence": 0.8109,
+        "bbox": [
+          261.8,
+          300.5,
+          1100.8,
+          576.3
+        ],
+        "area_px": 231385
+      },
+      {
+        "id": 2,
+        "class": "menuiserie_metallique",
+        "confidence": 0.7594,
+        "bbox": [
+          479.6,
+          70.5,
+          567.6,
+          132.8
+        ],
+        "area_px": 5475
+      },
+      {
+        "id": 3,
+        "class": "batiment_non_enduit",
+        "confidence": 0.6246,
+        "bbox": [
+          1144.3,
+          132.4,
+          1772.8,
+          577.8
+        ],
+        "area_px": 279960
+      },
+      {
+        "id": 4,
+        "class": "menuiserie_metallique",
+        "confidence": 0.4954,
+        "bbox": [
+          666.9,
+          67.4,
+          752.1,
+          134.1
+        ],
+        "area_px": 5678
+      },
+      {
+        "id": 5,
+        "class": "batiment_enduit",
+        "confidence": 0.4135,
+        "bbox": [
+          0.0,
+          288.3,
+          156.9,
+          480.8
+        ],
+        "area_px": 30203
+      },
+      {
+        "id": 6,
+        "class": "menuiserie_metallique",
+        "confidence": 0.3869,
+        "bbox": [
+          0.9,
+          336.3,
+          25.0,
+          393.1
+        ],
+        "area_px": 1364
+      }
+    ]
+  }
+}
