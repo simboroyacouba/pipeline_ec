@@ -1,0 +1,149 @@
+{
+  "timestamp": "2026-05-03T19:30:42.380422",
+  "output_dir": "./output",
+  "total_input": 2,
+  "stats": {
+    "snapshot": 1,
+    "production": 1,
+    "skip": 0,
+    "error": 0
+  },
+  "results": [
+    {
+      "image": "Production_16.jpg",
+      "mode": "production",
+      "timestamp": "2026-05-03T19:30:40.766966",
+      "text_description": "Analyse Production (YOLO + Ensemble Soft+WA-NMS). YOLO n'a détecté aucun objet. L'ensemble (YOLO-seg + Mask R-CNN + DeepLabV3+) a identifié : 1 zone(s) de toiture tole ondulee, 1 zone(s) de toiture tole bac.",
+      "yolo": {
+        "model": "YOLODetector (class/yolo_classification)",
+        "total": 0,
+        "classes_found": [],
+        "detections": []
+      },
+      "ensemble": {
+        "model": "SoftWANMSEnsemble (YOLO-seg + Mask R-CNN + DeepLabV3+)",
+        "total": 2,
+        "classes_found": [
+          "toiture_tole_ondulee",
+          "toiture_tole_bac"
+        ],
+        "detections": [
+          {
+            "id": 1,
+            "class": "toiture_tole_ondulee",
+            "confidence": 0.2773,
+            "bbox": [
+              966.0,
+              482.0,
+              1029.0,
+              572.0
+            ],
+            "area_px": 5670,
+            "mask_area_px": 3951
+          },
+          {
+            "id": 2,
+            "class": "toiture_tole_bac",
+            "confidence": 0.3525,
+            "bbox": [
+              723.2,
+              262.2,
+              1283.6,
+              838.1
+            ],
+            "area_px": 322759,
+            "mask_area_px": 269643
+          }
+        ]
+      }
+    },
+    {
+      "image": "Snapshot_16.jpg",
+      "mode": "snapshot",
+      "timestamp": "2026-05-03T19:30:42.379423",
+      "text_description": "Analyse Snapshot (YOLO uniquement). YOLO a détecté : 4 menuiserie metallique, 2 batiment peint.",
+      "yolo": {
+        "model": "YOLODetector (class/yolo_classification)",
+        "total": 6,
+        "classes_found": [
+          "menuiserie_metallique",
+          "batiment_peint"
+        ],
+        "detections": [
+          {
+            "id": 1,
+            "class": "menuiserie_metallique",
+            "confidence": 0.7802,
+            "bbox": [
+              468.7,
+              196.6,
+              494.9,
+              222.9
+            ],
+            "area_px": 689
+          },
+          {
+            "id": 2,
+            "class": "menuiserie_metallique",
+            "confidence": 0.7721,
+            "bbox": [
+              640.5,
+              190.5,
+              699.9,
+              237.8
+            ],
+            "area_px": 2814
+          },
+          {
+            "id": 3,
+            "class": "menuiserie_metallique",
+            "confidence": 0.6999,
+            "bbox": [
+              374.0,
+              199.1,
+              436.3,
+              245.7
+            ],
+            "area_px": 2905
+          },
+          {
+            "id": 4,
+            "class": "batiment_peint",
+            "confidence": 0.5513,
+            "bbox": [
+              246.3,
+              152.0,
+              807.3,
+              292.5
+            ],
+            "area_px": 78841
+          },
+          {
+            "id": 5,
+            "class": "menuiserie_metallique",
+            "confidence": 0.5347,
+            "bbox": [
+              666.8,
+              560.0,
+              711.2,
+              611.3
+            ],
+            "area_px": 2274
+          },
+          {
+            "id": 6,
+            "class": "batiment_peint",
+            "confidence": 0.2609,
+            "bbox": [
+              240.9,
+              151.7,
+              787.1,
+              293.0
+            ],
+            "area_px": 77190
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "categories_batiments": [
+    {
+      "id": 1,
+      "type_batiment": "Villa ou construction à niveau",
+      "materiaux_construction": "Définitifs",
+      "type_couverture": "Dalle de béton",
+      "amenagement_facade": "Carrelage",
+      "menuiserie_facade": "Aluminium",
+      "valeur_m2_kfcfa": 160
+    },
+    {
+      "id": 2,
+      "type_batiment": "Villa ou construction à niveau",
+      "materiaux_construction": "Définitifs",
+      "type_couverture": "Dalle de béton",
+      "amenagement_facade": "Carrelage",
+      "menuiserie_facade": "Bois",
+      "valeur_m2_kfcfa": 140
+    },
+    {
+      "id": 3,
+      "type_batiment": "Villa ou construction à niveau",
+      "materiaux_construction": "Définitifs",
+      "type_couverture": "Dalle de béton",
+      "amenagement_facade": "Peinture",
+      "menuiserie_facade": "Aluminium",
+      "valeur_m2_kfcfa": 130
+    },
+    {
+      "id": 4,
+      "type_batiment": "Villa ou construction à niveau",
+      "materiaux_construction": "Définitifs",
+      "type_couverture": "Dalle de béton",
+      "amenagement_facade": "Peinture",
+      "menuiserie_facade": "Bois",
+      "valeur_m2_kfcfa": 120
+    },
+    {
+      "id": 5,
+      "type_batiment": "Villa ou construction à niveau",
+      "materiaux_construction": "Définitifs",
+      "type_couverture": "Dalle de béton",
+      "amenagement_facade": ["Carrelage", "Peinture"],
+      "menuiserie_facade": "Métallique",
+      "valeur_m2_kfcfa": 110
+    },
+    {
+      "id": 6,
+      "type_batiment": "Villa ou construction à niveau",
+      "materiaux_construction": "Définitifs",
+      "type_couverture": ["Tôle", "Tuile"],
+      "amenagement_facade": "Enduit",
+      "menuiserie_facade": "Aluminium",
+      "valeur_m2_kfcfa": 100
+    },
+    {
+      "id": 7,
+      "type_batiment": "Villa ou construction à niveau",
+      "materiaux_construction": "Définitifs",
+      "type_couverture": ["Tôle", "Tuile"],
+      "amenagement_facade": "Enduit",
+      "menuiserie_facade": ["Bois", "Métallique"],
+      "valeur_m2_kfcfa": 90
+    },
+    {
+      "id": 8,
+      "type_batiment": "Maison conteneur",
+      "materiaux_construction": "Métallique",
+      "type_couverture": null,
+      "amenagement_facade": null,
+      "menuiserie_facade": ["Aluminium", "Bois", "Métallique"],
+      "valeur_m2_kfcfa": 80
+    },
+    {
+      "id": 9,
+      "type_batiment": "Villa ou construction à niveau",
+      "materiaux_construction": "Briques de terre (banco)",
+      "type_couverture": ["Tôle", "Tuile"],
+      "amenagement_facade": "Enduit",
+      "menuiserie_facade": ["Bois", "Métallique"],
+      "valeur_m2_kfcfa": 50
+    },
+    {
+      "id": 10,
+      "type_batiment": "Villa ou construction à niveau",
+      "materiaux_construction": "Briques de terre (banco)",
+      "type_couverture": ["Tôle", "Tuile"],
+      "amenagement_facade": "Non enduit",
+      "menuiserie_facade": ["Bois", "Métallique"],
+      "valeur_m2_kfcfa": 40
+    },
+    {
+      "id": 11,
+      "type_batiment": "Hangar",
+      "materiaux_construction": "Ossature en béton armé",
+      "type_couverture": "Tôle bac",
+      "amenagement_facade": ["Peinture", "Carrelage", "Enduit"],
+      "menuiserie_facade": ["Aluminium", "Bois", "Métallique"],
+      "valeur_m2_kfcfa": 150
+    },
+    {
+      "id": 12,
+      "type_batiment": "Hangar",
+      "materiaux_construction": "Ossature métallique",
+      "type_couverture": "Tôle bac",
+      "amenagement_facade": null,
+      "menuiserie_facade": "Métallique",
+      "valeur_m2_kfcfa": 130
+    },
+    {
+      "id": 13,
+      "type_batiment": "Hangar",
+      "materiaux_construction": "Ossature métallique",
+      "type_couverture": "Tôle ondulée",
+      "amenagement_facade": null,
+      "menuiserie_facade": "Métallique",
+      "valeur_m2_kfcfa": 120
+    },
+    {
+      "id": 14,
+      "type_batiment": "Hangar",
+      "materiaux_construction": "Ossature en béton armé",
+      "type_couverture": "Paille",
+      "amenagement_facade": ["Peinture", "Carrelage", "Enduit"],
+      "menuiserie_facade": ["Aluminium", "Bois", "Métallique"],
+      "valeur_m2_kfcfa": 110
+    },
+    {
+      "id": 15,
+      "type_batiment": "Hangar",
+      "materiaux_construction": "Ossature métallique",
+      "type_couverture": "Tôle ondulée",
+      "amenagement_facade": null,
+      "menuiserie_facade": null,
+      "valeur_m2_kfcfa": 60
+    },
+    {
+      "id": 16,
+      "type_batiment": "Hangar",
+      "materiaux_construction": "Ossature bois",
+      "type_couverture": "Paille",
+      "amenagement_facade": null,
+      "menuiserie_facade": null,
+      "valeur_m2_kfcfa": 50
+    }
+  ]
+}

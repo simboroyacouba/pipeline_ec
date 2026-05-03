@@ -1,0 +1,36 @@
+{
+  "_comment": "Mapping classes modèle → caractéristiques bâtiment. source: 'segmentation' = ensemble Soft+WA-NMS, 'detection' = YOLO class/",
+
+  "type_couverture": {
+    "_source": "segmentation",
+    "_defaut": "DEFAULT_TYPE_COUVERTURE",
+    "toiture_tole_bac":     "Tôle bac",
+    "toiture_tole_ondulee": "Tôle ondulée",
+    "toiture_dalle":        "Dalle de béton"
+  },
+
+  "materiaux_construction": {
+    "_source": "detection",
+    "_defaut": "DEFAULT_MATERIAUX_CONSTRUCTION",
+    "batiment_enduit":      "Définitifs",
+    "batiment_non_enduit":  "Briques de terre (banco)",
+    "batiment_peint":       "Définitifs"
+  },
+
+  "amenagement_facade": {
+    "_source": "detection",
+    "_defaut": "DEFAULT_AMENAGEMENT_FACADE",
+    "batiment_enduit":      "Enduit",
+    "batiment_non_enduit":  "Non enduit",
+    "batiment_peint":       "Peinture"
+  },
+
+  "menuiserie_facade": {
+    "_source": "detection",
+    "_defaut": "DEFAULT_MENUISERIE_FACADE",
+    "batiment_enduit":        "Aluminium",
+    "batiment_non_enduit":    "Bois ou métallique",
+    "batiment_peint":         "Aluminium",
+    "menuiserie_metallique":  "Métallique"
+  }
+}
