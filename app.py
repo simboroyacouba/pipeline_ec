@@ -30,8 +30,10 @@ sys.path.insert(0, str(_ROOT))
 
 from pipeline.pipeline import (
     YOLODetector, YOLOSegDetector, MaskRCNNDetector, DeepLabDetector,
+    FasterRCNNDetector, DetFuser,
     SoftWANMSEnsemble, Pipeline,
     YOLO_AVAILABLE, TORCH_AVAILABLE,
+    DET_CLASS_NAMES,
 )
 
 # ── App ────────────────────────────────────────────────────────────────────────
@@ -67,26 +69,64 @@ def _load_pipeline() -> Pipeline:
             'YOLO_DET_OBLIQUE_MODEL / YOLO_DET_NADIR_MODEL non définis dans .env')
 
     threshold = float(os.getenv('SCORE_THRESHOLD', '0.25'))
-    yolo_oblique = YOLODetector(oblique_path, threshold=threshold)
-    yolo_nadir   = YOLODetector(nadir_path,   threshold=threshold)
 
-    ensemble = None
-    seg_path = os.getenv('YOLO_SEG_MODEL')
-    mrc_path = os.getenv('MASKRCNN_MODEL')
-    dlb_path = os.getenv('DEEPLAB_MODEL')
-    if TORCH_AVAILABLE and seg_path and mrc_path and dlb_path:
+    # ── Seuils par classe ───────────────────────────────────────────────────────
+    _SEG_CLASSES = ['toiture_tole_ondulee', 'toiture_tole_bac', 'toiture_dalle']
+
+    def _thr(prefix, default):
+        return {c: float(os.getenv(f'{prefix}{c.upper()}', default))
+                for c in DET_CLASS_NAMES}
+
+    def _seg_thr(default):
+        return {c: float(os.getenv(f'CONF_{c.upper()}', default))
+                for c in _SEG_CLASSES}
+
+    yolo_thr   = _thr('YOLO_CONF_', threshold)
+    frcnn_thr  = _thr('FRCNN_CONF_', threshold)
+    fusion_thr = {**_thr('CONF_', threshold), **_seg_thr(threshold)}
+
+    # ── YOLO détecteurs ────────────────────────────────────────────────────────
+    yolo_oblique = YOLODetector(oblique_path, threshold=threshold,
+                                class_thresholds=yolo_thr)
+    yolo_nadir   = YOLODetector(nadir_path,   threshold=threshold,
+                                class_thresholds=yolo_thr)
+
+    # ── Faster R-CNN + DetFuser ────────────────────────────────────────────────
+    det_oblique = det_nadir = None
+    if TORCH_AVAILABLE:
+        frcnn_obl_path   = os.getenv('FASTER_DET_OBLIQUE_MODEL')
+        frcnn_nadir_path = os.getenv('FASTER_DET_NADIR_MODEL')
         try:
-            yolo_seg = YOLOSegDetector(seg_path, threshold=threshold)
-            maskrcnn = MaskRCNNDetector(mrc_path, threshold=threshold)
-            deeplab  = DeepLabDetector(dlb_path,
-                                       backbone=os.getenv('DEEPLAB_BACKBONE', 'resnet50'))
-            ensemble = SoftWANMSEnsemble(yolo_seg, maskrcnn, deeplab,
-                                          conf_thr=threshold)
-            print('[OK] Ensemble Soft+WA-NMS charge')
+            if frcnn_obl_path and os.path.exists(frcnn_obl_path):
+                frcnn_obl   = FasterRCNNDetector(frcnn_obl_path, threshold=threshold,
+                                                  class_thresholds=frcnn_thr)
+                det_oblique = DetFuser(yolo_oblique, frcnn_obl,
+                                       conf_thr=threshold, class_thresholds=fusion_thr)
+            if frcnn_nadir_path and os.path.exists(frcnn_nadir_path):
+                frcnn_nadir = FasterRCNNDetector(frcnn_nadir_path, threshold=threshold,
+                                                  class_thresholds=frcnn_thr)
+                det_nadir   = DetFuser(yolo_nadir, frcnn_nadir,
+                                       conf_thr=threshold, class_thresholds=fusion_thr)
         except Exception as exc:
-            print(f'[!] Ensemble non disponible : {exc}')
+            print(f'[!] Faster R-CNN non disponible : {exc}')
 
-    _pipeline = Pipeline(yolo_oblique, yolo_nadir,
+    if det_oblique is None:
+        det_oblique = yolo_oblique
+    if det_nadir is None:
+        det_nadir = yolo_nadir
+
+    # ── Segmentation Mask R-CNN (optionnel) ───────────────────────────────────
+    ensemble = None
+    mrc_path = os.getenv('MASKRCNN_MODEL')
+    if TORCH_AVAILABLE and mrc_path and os.path.exists(mrc_path):
+        try:
+            ensemble = MaskRCNNDetector(mrc_path, threshold=threshold,
+                                        class_thresholds=fusion_thr)
+            print('[OK] Mask R-CNN charge')
+        except Exception as exc:
+            print(f'[!] Mask R-CNN non disponible : {exc}')
+
+    _pipeline = Pipeline(det_oblique, det_nadir,
                          ensemble=ensemble,
                          output_dir=str(_HERE / 'output'))
     return _pipeline

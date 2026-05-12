@@ -236,7 +236,7 @@ def aggregate(descriptions_dir: str,
         elif mode == 'production':
             stats['production'] += 1
 
-        for det in data.get('yolo', {}).get('detections', []):
+        for det in (data.get('detection') or data.get('yolo', {})).get('detections', []):
             cls  = det['class']
             conf = det['confidence']
             bbox = det['bbox']
@@ -249,9 +249,18 @@ def aggregate(descriptions_dir: str,
                                           'bbox': bbox, 'area_px': area})
 
         if mode == 'production':
-            for det in data.get('ensemble', {}).get('detections', []):
-                cls       = det['class']
-                mask_area = det.get('mask_area_px', det.get('area_px', 0))
+            seg_data  = data.get('segmentation', {})
+            union_px  = seg_data.get('union_area_px_by_class', {})
+            # added_cls : première occurrence de chaque classe dans cette image
+            # → reçoit l'aire union ; les suivantes reçoivent 0 (pas de double-comptage)
+            added_cls: set = set()
+            for det in seg_data.get('detections', []):
+                cls = det['class']
+                if cls in union_px:
+                    mask_area = union_px[cls] if cls not in added_cls else 0
+                else:
+                    mask_area = det.get('mask_area_px', det.get('area_px', 0))
+                added_cls.add(cls)
                 toitures[cls].append({'image': img_name, 'confidence': det['confidence'],
                                       'bbox': det['bbox'], 'mask_area_px': mask_area})
 
@@ -487,8 +496,12 @@ def generate_fiche(rapport: dict, mapping: dict = None) -> dict:
                    or os.getenv('DEFAULT_MATERIAUX_CONSTRUCTION'))
     amenagement = (_dominant_for_field('amenagement_facade')
                    or os.getenv('DEFAULT_AMENAGEMENT_FACADE'))
-    menuiserie  = (_dominant_for_field('menuiserie_facade')
-                   or os.getenv('DEFAULT_MENUISERIE_FACADE'))
+    # menuiserie_metallique prime toujours sur les autres classes
+    if 'menuiserie_metallique' in snap:
+        menuiserie = _resolve(mapping, 'menuiserie_facade', 'menuiserie_metallique')
+    else:
+        menuiserie = (_dominant_for_field('menuiserie_facade')
+                      or os.getenv('DEFAULT_MENUISERIE_FACADE'))
 
     # ── Catégorie : classe snapshot la plus représentée ───────────────────────
     dominant_snap = max(snap.values(), key=lambda v: v.get('total', 0)) if snap else None
